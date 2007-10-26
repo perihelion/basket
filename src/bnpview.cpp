@@ -924,27 +924,25 @@ bool BNPView::canExpand()
 BasketTreeItem* BNPView::appendBasket ( Basket *basket, BasketTreeItem *parentItem )
 {
 	kDebug() << "append basket to the tree" << endl;
-	//QList<QTreeWidgetItem *> items;
-	QTreeWidgetItem *item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString("item 0")));
-	m_tree->addTopLevelItem(item);
+	kDebug() << (int)basket << " " << (int)parentItem << endl;
 
 	BasketTreeItem *newBasketItem;
-	if ( parentItem )
-	{
+	if ( parentItem ) {
 		QTreeWidgetItem *lastChild = 0;
 		if ( parentItem->childCount() )
 			lastChild= parentItem->child ( parentItem->childCount()-1 );
 		newBasketItem = new BasketTreeItem ( parentItem, lastChild, basket );
-	}
-	else
-	{
-		QTreeWidgetItem *lastChild = 0;
+	} else {
+		/*FIXME, REMOVE, NEW IMPLEMENTATION IN 1.5: QTreeWidgetItem *lastChild = 0;
 		QTreeWidgetItem *topLevel=0;
 		if ( m_tree->topLevelItemCount() )
 			topLevel= m_tree->topLevelItem ( m_tree->topLevelItemCount()-1 );
 		if ( topLevel != 0 && topLevel->childCount() )
 			lastChild=topLevel->child ( topLevel->childCount()-1 );
-		newBasketItem = new BasketTreeItem ( topLevel, lastChild, basket );
+		newBasketItem = new BasketTreeItem ( topLevel, lastChild, basket );*/
+
+		newBasketItem = new BasketTreeItem( (QTreeWidgetItem*)0, basket );
+		m_tree->addTopLevelItem( newBasketItem );
 	}
 
 	emit basketNumberChanged ( basketCount() );
