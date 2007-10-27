@@ -828,7 +828,7 @@ void BasketTree::resizeEvent ( QResizeEvent *event )
 
 void BasketTree::paintEmptyArea ( QPainter *painter, const QRect &rect )
 {
-//FIXME 1.5	QTreeWidgetItem::paintEmptyArea ( painter, rect );
+	//FIXME 1.5 QTreeWidgetItem::paintEmptyArea ( painter, rect );
 
 	BasketTreeItem *last = Global::bnpView->lastListViewItem();
 	if ( last && !last->isVisible() )
